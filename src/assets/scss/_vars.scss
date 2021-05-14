@@ -1,0 +1,46 @@
+$brand-light-orange: #ffdcbc;
+$brand-orange: #ff681d;
+$brand-deep-orange: #af3f08;
+$brand-yellow: #ffe03d;
+$brand-deep-yellow: #e4b12e;
+$brand-wheat: #fdf8e2;
+$brand-deep-wheat: #f9efc3;
+$ui-light-red: #ffc6c6;
+$ui-red: #f55151;
+$ui-deep-red: #9c3e3e;
+$ui-light-blue: #b4e6ff;
+$ui-blue: #42bbf8;
+$ui-deep-blue: #1f82b3;
+$ui-light-green: #bbeab8;
+$ui-green: #73be6f;
+$ui-deep-green: #00805f;
+$ui-new-good: #6fbebc;
+$gray-90: #161616;
+$gray-75: #404040;
+$gray-55: #737171;
+$gray-30: #b2b2b2;
+$gray-10: #e6e6e6;
+$gray-03: #f7f7f7;
+$white: #fff;
+$overlay-black: rgba(0,0,0,0.25);
+
+
+$button-border-width: 1px;
+$button-border-radius: 24px;
+
+$padding-form: 0.6rem;
+
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+$grid-columns: 12;
+$grid-gutter-width: 10px;
+
+$enable-grid-classes: true;

@@ -7,10 +7,12 @@
       <div class="col-6">
         <div class="px-4">
           <h1 class="product__title">
-            Смартфон Samsung Galaxy A52 128GB Black
+            {{ GET_PRODUCT.title }}
           </h1>
-          <p class="product__price">179 990 ₸</p>
-          <button class="product__button">Добавить в корзину</button>
+          <p class="product__price">$ {{ GET_PRODUCT.price }}</p>
+          <button @click="addToCArt(GET_PRODUCT)" class="product__button">
+            Добавить в корзину
+          </button>
         </div>
         <div class="product__details details">
           <p class="details__header">Описание</p>
@@ -35,19 +37,42 @@
             </li>
           </ul>
         </div>
+        <div class="my-4">
+          <span style="font-weight: bold"> Description </span>
+          <p>{{ GET_PRODUCT.description }}</p>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 import SliderCart from "../components/slider/SliderCart.vue";
 export default {
   components: { SliderCart },
+  computed: {
+    ...mapGetters(["GET_PRODUCT"]),
+  },
+  methods: {
+    ...mapActions(["FETCH_PRODUCT", "ADD_TO_CART"]),
+
+    addToCArt(id) {
+      this.ADD_TO_CART(id);
+    },
+  },
+  mounted() {
+    this.FETCH_PRODUCT(this.$route.params.id);
+  },
 };
 </script>
 
 <style scoped lang="scss">
+p {
+  line-height: 1.5rem;
+  width: 80%;
+  font-size: 14px;
+}
 .product {
   padding: 1rem;
   background-color: $white;
@@ -55,12 +80,15 @@ export default {
     padding: 0 1rem;
   }
   &__title {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
     margin-bottom: 2rem;
+    margin-top: 2rem;
   }
   &__price {
     font-size: 2rem;
     font-weight: bold;
+    margin-bottom: 2rem;
   }
   &__button {
     text-transform: uppercase;
@@ -69,6 +97,7 @@ export default {
     background-color: $ui-green;
     color: $white;
     border-radius: 50px;
+    margin-bottom: 2rem;
   }
   &__details {
     margin-top: 1rem;

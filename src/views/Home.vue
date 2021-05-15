@@ -1,15 +1,18 @@
 <template>
   <div>
-    <Slider class="mt-4" />
+    <Slider class="mt-2" />
     <div class="tab-content">
       <tabs mode="light">
-        <tab title="Хит продаж"> <card :cards="cards" /></tab>
-        <tab title="Смартфоны и гаджеты"> <card :cards="cards" /></tab>
-        <tab title="Ноутбуки и гаджеты"> <card :cards="cards" /></tab>
+        <tab title="Все">
+          <card :cards="GET_ALL_PRODUCTS" />
+        </tab>
+        <tab title="jewelery">
+          <card :cards="GET_CATEGORY" />
+        </tab>
       </tabs>
       <section class="aria-label">
         <p class="pt-2 typography-subtitle">Сейчас покупают</p>
-        <card :cards="cards" />
+        <card :cards="GET_ALL_PRODUCTS" />
       </section>
     </div>
   </div>
@@ -20,15 +23,33 @@ import Card from "../components/cards/Card.vue";
 import Tab from "../components/Tab/Tab.vue";
 import Tabs from "../components/Tab/Tabs.vue";
 import Slider from "../components/slider/Slider";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "Home",
   components: { Card, Tabs, Tab, Slider },
+  data: () => ({}),
+  computed: {
+    ...mapGetters(["GET_ALL_PRODUCTS", "GET_ALL_CATEGORIES", "GET_CATEGORY"]),
+  },
+  methods: {
+    ...mapActions([
+      "FETCH_ALL_PRODUCTS",
+      "FETCH_ALL_CATEGORIES",
+      "FETCH_CATEGORY",
+    ]),
+  },
+  mounted() {
+    this.FETCH_ALL_PRODUCTS();
+    this.FETCH_ALL_CATEGORIES();
+    this.FETCH_CATEGORY("jewelery");
+  },
 };
 </script>
 
 <style scoped lang="scss">
 .tab-content {
   margin-top: 2rem;
+  text-transform: uppercase;
 }
 </style>

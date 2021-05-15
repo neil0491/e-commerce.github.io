@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import CartScreen from "../views/CartScreen.vue";
+// import Home from "../views/Home.vue";
+// import CartScreen from "../views/CartScreen.vue";
 
 Vue.use(VueRouter);
 
@@ -9,18 +9,21 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: () => import("../views/Home.vue"),
   },
   {
-    path: "/cart",
-    name: "Cart",
-    component: CartScreen,
+    path: "/product/:id",
+    name: "Product",
+    component: () => import("../views/ProductScreen.vue"),
   },
   {
-    path: "/about",
+    path: "/products",
     name: "About",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    component: () => import("../views/Products.vue"),
+  },
+  {
+    path: "*",
+    component: { render: (h) => h("div", ["404! Page Not Found!"]) },
   },
 ];
 

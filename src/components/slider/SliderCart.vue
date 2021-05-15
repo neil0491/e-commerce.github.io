@@ -58,12 +58,13 @@ export default {
 
 <style scoped lang="scss">
 .hooper__img {
-  object-fit: cover;
+  object-fit: contain;
+  height: 410px;
 }
 .bottom {
   margin: 0.5rem;
   &__img {
-    object-fit: cover;
+    object-fit: contain;
     height: 100px;
   }
 }

@@ -1,0 +1,282 @@
+@media (max-width: 767px) {
+    .MyAccount-FlexWrapper .Form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+}
+.MyAccount-WelcomeTitle {
+    margin-bottom: 1rem;
+}
+.MyAccount-Action form {
+    padding: 2rem;
+}
+@media (max-width: 767px) {
+    .MyAccount-Action .Form {
+        text-align: center;
+    }
+}
+.MyAccount-Action .MyAccount-Buttons {
+    grid-gap: 20px;
+}
+@media (max-width: 767px) {
+    .MyAccount-Action .MyAccount-Buttons {
+        grid-gap: 13px;
+    }
+}
+.MyAccount-Buttons {
+    margin-top: 16px;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+}
+.MyAccount-Buttons_state_signIn {
+    grid-template-columns: 1fr;
+}
+@media (max-width: 767px) {
+    .MyAccount-Buttons {
+        grid-template-columns: 1fr;
+    }
+    .MyAccount-Buttons button {
+        text-align: center;
+    }
+}
+.MyAccount-ForgotPassword {
+    width: 100%;
+    margin-top: 20px;
+}
+@media (min-width: 768px) {
+    .MyAccount-ForgotPassword:after {
+        content: "";
+        display: block;
+        height: 1px;
+        margin: 20px -30px 0;
+    }
+}
+.MyAccount-ForgotPassword button {
+    font-size: 1rem;
+}
+@media (max-width: 767px) {
+    .MyAccount-ForgotPassword button {
+        font-size: 14px;
+    }
+}
+:not(picture) {
+    position: relative;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: initial;
+    font-weight: 400;
+    outline: 0;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+}
+label {
+    display: block;
+}
+p {
+    font-size: 1.25rem;
+}
+p {
+    margin-bottom: 1.2rem;
+    line-height: 1.8;
+}
+p:last-of-type {
+    margin-bottom: 0;
+}
+input {
+    min-height: 2rem;
+    min-width: 4rem;
+}
+button {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.Button,
+button {
+    text-decoration: none;
+    border-radius: $button-border-radius;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: $button-padding;
+    color: $button-background;
+    background-color: transparent;
+    cursor: pointer;
+    border: $button-border-width solid transparent;
+}
+.Button_isHollow {
+    border-width: 1px;
+}
+.Button_likeLink {
+    text-transform: none;
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    text-align: left;
+}
+.Button_likeLink:focus,
+.Button_likeLink:hover {
+    text-decoration: underline;
+}
+@media (min-width: 768px) {
+    .Button:focus,
+    .Button:hover {
+        border-color: grey;
+        background-color: $brand-orange;
+        color: $white;
+    }
+}
+input {
+    border: 1px solid $gray-10;
+    border-radius: $button-border-radius;
+    font-weight: 300;
+    padding: 11px 25px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-size: 16px;
+    line-height: 1;
+}
+/*! CSS Used from: Embedded */
+.ButtonNext {
+    display: flex;
+    align-items: center;
+    background: $gray-10;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+.ButtonNext_Size-L {
+    padding: 8px 16px;
+    height: 40px;
+    border-radius: 12px;
+}
+.ButtonNext_Theme-Alpha {
+    background: $brand-orange;
+}
+.ButtonNext_Theme-Alpha .ButtonNext__Text {
+    color: $white;
+}
+.ButtonNext_Theme-Omega {
+    background: $white;
+    border: 1px solid $brand-orange;
+}
+.ButtonNext_Theme-Omega .ButtonNext__Text {
+    color: $gray-75;
+}
+.ButtonNext_Shadow-default:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+.ButtonNext_Shadow-default:active {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+.ButtonNext__Text {
+    width: 100%;
+    margin: 0;
+    color: $gray-75;
+    font-style: normal;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+}
+.ButtonNext__Text_Size-L {
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.1em;
+}
+/*! CSS Used from: Embedded */
+.Typography__Subtitle {
+    color: $gray-90;
+    font-weight: 600;
+}
+.Typography__Subtitle {
+    font-size: 24px;
+    line-height: 32px;
+}
+.Typography__Caption {
+    margin: 0;
+    color: $gray-90;
+    font-size: 12px;
+    line-height: 16px;
+}
+.Typography__Caption_Bold {
+    font-weight: 600;
+}
+/*! CSS Used from: Embedded */
+.FieldNext {
+    flex: 0 0 100%;
+    width: 100%;
+    margin: 1rem 0;
+    padding: 8px 12px;
+    min-height: 40px;
+    height: 40px;
+    box-sizing: border-box;
+    color: $gray-90;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    background: $white;
+    border: 1px solid $gray-10;
+    border-radius: 4px;
+    outline: none;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.FieldNext:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.FieldNext:active {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+.FieldNext:focus {
+    border-color: $ui-blue;
+}
+.FieldNext:disabled {
+    color: $gray-10;
+    border-color: $gray-10;
+
+    .FieldNext:disabled + .FieldNext__Label {
+        color: $gray-10;
+        cursor: default;
+    }
+    .FieldNext_KeepLabel:disabled + .FieldNext__Label {
+        color: $brand-light-orange;
+    }
+    .FieldNext__Wrapper {
+        position: relative;
+        display: flex;
+        flex-flow: column nowrap;
+        min-height: 60px;
+        height: 60px;
+    }
+    .FieldNext__Label {
+        position: absolute;
+        left: 13px;
+        top: 9px;
+        color: $gray-55;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        cursor: text;
+        transition: all 0.12s ease;
+        will-change: auto;
+    }
+    .FieldNext__Message {
+        margin-top: 4px;
+        color: $gray-30;
+        visibility: hidden;
+    }
+}

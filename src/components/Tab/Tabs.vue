@@ -66,10 +66,8 @@ ul.tabs__header > li.tab__selected {
   background: $white;
 }
 .tab {
-  display: inline-block;
   color: $gray-90;
   border-radius: 10px;
-  min-height: 400px;
 }
 
 .tabs__light li {

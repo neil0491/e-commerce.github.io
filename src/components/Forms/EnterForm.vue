@@ -11,7 +11,6 @@
             <div class="FieldNext__Wrapper FieldNext__Wrapper_v1">
               <input
                 class="FieldNext FieldNext_KeepLabel"
-                id="phone"
                 name="phone"
                 type="phone"
                 placeholder="Номер телефона"
@@ -24,7 +23,6 @@
             <div class="FieldNext__Wrapper FieldNext__Wrapper_v1">
               <input
                 class="FieldNext FieldNext_KeepLabel"
-                id="password"
                 name="password"
                 type="password"
                 value=""
@@ -37,7 +35,6 @@
             <div class="FieldNext__Wrapper FieldNext__Wrapper_v1">
               <input
                 class="FieldNext FieldNext_KeepLabel"
-                id="password"
                 name="password"
                 type="password"
                 value=""
@@ -50,7 +47,6 @@
             <div class="FieldNext__Wrapper FieldNext__Wrapper_v1">
               <input
                 class="FieldNext FieldNext_KeepLabel"
-                id="password"
                 name="password"
                 type="password"
                 value=""
@@ -74,7 +70,7 @@
           </div>
           <div class="MyAccount-Buttons MyAccount-Buttons_state_signIn">
             <button
-            @click="openRegistration"
+              @click="openRegistration"
               class="ButtonNext ButtonNext_Size-L ButtonNext_Theme-Omega ButtonNext_Shadow-default Button Button_isHollow"
             >
               <p class="ButtonNext__Text ButtonNext__Text_Size-L">
@@ -96,10 +92,10 @@ export default {
     closeModal() {
       this.CLOSE_MODAL();
     },
-    openRegistration(){
+    openRegistration() {
       this.CLOSE_MODAL();
       this.OPEN_REGISTRATION();
-    }
+    },
   },
 };
 </script>

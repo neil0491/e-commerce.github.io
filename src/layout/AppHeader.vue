@@ -2,34 +2,35 @@
   <header class="header">
     <section class="py-2 bottom-border">
       <div class="row header-search">
-        <div class="col-1 col-md-2">
-          <router-link to="/"
-            ><img class="header-search__logo" src="/img/logo.png" alt="logo"
-          /></router-link>
+        <div class="col-2 col-md-2">
+          <router-link to="/">
+            <div>
+              <img
+                class="header-search__logo"
+                src="/img/logo.png"
+                alt="logo"
+              /></div
+          ></router-link>
         </div>
-        <div class="col-7 header-search__search">
+        <div class="col-10 col-md-7 header-search__search">
           <search />
         </div>
         <div class="col-2 header-search__login">
-          <div @click="openModal">
+          <div @click="OPEN_MODAL">
             <Button outline button-text="Войти" />
           </div>
-          <div @click="openModalRegistration">
+          <div @click="OPEN_REGISTRATION">
             <Button button-text="Регистрация" />
           </div>
-          <modal v-if="GET_IS_MODAL">
-            <enter-form></enter-form>
-          </modal>
-          <modal v-if="GET_IS_MODAL_REGISTRATION">
-            <registration-form></registration-form>
-          </modal>
         </div>
       </div>
     </section>
     <section class="header__navbar">
       <navbar />
     </section>
-    <cart-modal v-if="IS_CART_STATE" />
+    <section class="header__mobile-navbar">
+      <mobile-navbar />
+    </section>
   </header>
 </template>
 
@@ -37,10 +38,7 @@
 import { mapActions, mapGetters } from "vuex";
 
 import Button from "../components/Button.vue";
-import CartModal from "../components/Cart/CartModal.vue";
-import EnterForm from "../components/Forms/EnterForm.vue";
-import RegistrationForm from "../components/Forms/RegistrationForm.vue";
-import Modal from "../components/modal/Modal.vue";
+import MobileNavbar from "../components/navbar/MobileNavbar.vue";
 import Navbar from "../components/navbar/Navbar.vue";
 import Search from "../components/Search.vue";
 
@@ -48,31 +46,18 @@ export default {
   components: {
     Search,
     Button,
-    Modal,
-    EnterForm,
-    RegistrationForm,
     Navbar,
-    CartModal,
+    MobileNavbar,
   },
   data: () => ({
     isModal: false,
   }),
   methods: {
     ...mapActions(["OPEN_MODAL", "OPEN_REGISTRATION"]),
-
-    openModal() {
-      this.OPEN_MODAL();
-    },
-    openModalRegistration() {
-      this.OPEN_REGISTRATION();
-    },
   },
+
   computed: {
-    ...mapGetters([
-      "GET_IS_MODAL",
-      "GET_IS_MODAL_REGISTRATION",
-      "IS_CART_STATE",
-    ]),
+    ...mapGetters(["IS_CART_STATE", "IS_DESKTOP", "IS_MOBILE", "GET_MENU"]),
   },
 };
 </script>
@@ -82,31 +67,60 @@ export default {
   background: $white;
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 10;
+  border-top: 1px solid $gray-10;
   &__navbar {
     max-width: 1400px;
     margin: 0 auto;
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
-
-  border-top: 1px solid $gray-10;
+  &__mobile-navbar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 60px;
+    width: 100%;
+    background: $white;
+    -webkit-box-shadow: 0px -4px 8px -1px rgba(34, 60, 80, 0.15);
+    -moz-box-shadow: 0px -4px 8px -1px rgba(34, 60, 80, 0.15);
+    box-shadow: 0px -4px 8px -1px rgba(34, 60, 80, 0.15);
+    @media (max-width: 767px) {
+      display: block;
+    }
+  }
 }
 .header-search {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: calc(1300px - 30px);
+  max-width: 1400px;
   margin: 0rem auto;
+  padding: 0 1rem;
   &__logo {
     width: 100px;
+    margin: 0 auto;
+    @media (max-width: 767px) {
+      width: 100%;
+    }
   }
   &__search {
-    padding: 0 30px;
+    padding: 0 30px 0 0;
     margin-right: 2%;
+    @media (max-width: 767px) {
+      padding: 0;
+      margin: 0;
+    }
   }
   &__login {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    @media (max-width: 767px) {
+      display: none;
+    }
   }
 }
 </style>

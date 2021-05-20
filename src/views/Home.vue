@@ -6,8 +6,12 @@
         <tab title="Все">
           <card :cards="GET_ALL_PRODUCTS" />
         </tab>
-        <tab title="jewelery">
-          <card :cards="GET_CATEGORY" />
+        <tab
+          v-for="category in GET_ALL_CATEGORIES"
+          :key="category.id"
+          :title="category.title"
+        >
+          <card :cards="category.products" />
         </tab>
       </tabs>
       <section class="aria-label">
@@ -28,7 +32,9 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Home",
   components: { Card, Tabs, Tab, Slider },
-  data: () => ({}),
+  data: () => ({
+    tab: {},
+  }),
   computed: {
     ...mapGetters(["GET_ALL_PRODUCTS", "GET_ALL_CATEGORIES", "GET_CATEGORY"]),
   },
@@ -42,7 +48,6 @@ export default {
   mounted() {
     this.FETCH_ALL_PRODUCTS();
     this.FETCH_ALL_CATEGORIES();
-    this.FETCH_CATEGORY("jewelery");
   },
 };
 </script>

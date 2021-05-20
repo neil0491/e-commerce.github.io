@@ -1,15 +1,16 @@
 <template>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-3">
-        <aside class="category-options mt-1">
-          <div class="category-options__prisce"></div>
-        </aside>
-      </div>
-      <div class="col-9">
-        <div class="row">
-          <div class="col"><card :cards="GET_ALL_PRODUCTS" /></div>
+  <div class="row">
+    <div class="col-12 col-md-3">
+      <aside class="category-options">
+        <Aside />
+      </aside>
+    </div>
+    <div class="col-12 col-md-9">
+      <div class="row">
+        <div class="col-12">
+          <sort-price />
         </div>
+        <div class="col"><card :cards="GET_ALL_PRODUCTS" /></div>
       </div>
     </div>
   </div>
@@ -18,8 +19,10 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import Card from "../components/cards/Card.vue";
+import SortPrice from "../components/sort/sortPrice.vue";
+import Aside from "../layout/Aside.vue";
 export default {
-  components: { Card },
+  components: { Card, Aside, SortPrice },
   computed: {
     ...mapGetters(["GET_ALL_PRODUCTS"]),
   },
@@ -35,7 +38,14 @@ export default {
 <style scoped lang="scss">
 .category-options {
   background: $white;
-  height: 100%;
   border-radius: $br-s;
+  margin: $grid-gutter-width 0;
+  position: sticky;
+  top: 135px;
+  @media (max-width: 767px) {
+    /* display: none; */
+  }
+  &__price {
+  }
 }
 </style>

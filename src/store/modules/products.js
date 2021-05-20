@@ -1,3 +1,5 @@
+import { getFetch } from "@/api/api";
+
 // initial state
 const state = () => ({
   product: [],
@@ -20,9 +22,9 @@ const getters = {
 const actions = {
   async FETCH_ALL_PRODUCTS({ commit }) {
     try {
-      const res = await fetch("https://fakestoreapi.com/products");
-      const products = await res.json();
-      commit("SET_PRODUCTS_TO_STATE", products);
+      // const res = await fetch("http://localhost:1337/products");
+      const { data } = await getFetch("products");
+      commit("SET_PRODUCTS_TO_STATE", data);
     } catch (error) {
       commit("SET_PRODUCTS_ERROR", error);
       console.log(error);
@@ -30,10 +32,10 @@ const actions = {
   },
   async FETCH_PRODUCT({ commit }, id) {
     try {
-      const res = await fetch(`https://fakestoreapi.com/products/${id}`);
-      const product = await res.json();
-      console.log(product);
-      commit("SET_PRODUCT_TO_STATE", product);
+      // const res = await fetch(`http://localhost:1337/products/${id}`);
+      // const product = await res.json();
+      const { data } = await getFetch(`products/${id}`);
+      commit("SET_PRODUCT_TO_STATE", data);
     } catch (error) {
       commit("SET_PRODUCT_ERROR", error);
       console.log(error);

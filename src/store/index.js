@@ -4,6 +4,7 @@ import products from "./modules/products";
 import modal from "./modules/modal";
 import categories from "./modules/categories";
 import cart from "./modules/cart";
+import screen from "./modules/screen";
 
 Vue.use(Vuex);
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
     modal,
     categories,
     cart,
+    screen,
   },
   strict: process.env.DEV,
 });

@@ -1,7 +1,11 @@
+// import axios from "axios";
+import axios from "axios";
+import getFetch from "../../api/api";
+
 // initial state
 const state = () => ({
-  category: [],
-  categories: [],
+  category: null,
+  categories: null,
   errorCategories: null,
   errorCategory: null,
 });
@@ -20,9 +24,8 @@ const getters = {
 const actions = {
   async FETCH_ALL_CATEGORIES({ commit }) {
     try {
-      const res = await fetch("https://fakestoreapi.com/products/categories");
-      const categories = await res.json();
-      commit("SET_CATEGORIES_TO_STATE", categories);
+      const { data } = await axios("http://localhost:1337/categories");
+      commit("SET_CATEGORIES_TO_STATE", data);
     } catch (error) {
       commit("SET_CATEGORIES_ERROR", error);
       console.log(error);
@@ -30,11 +33,8 @@ const actions = {
   },
   async FETCH_CATEGORY({ commit }, id) {
     try {
-      const res = await fetch(
-        `https://fakestoreapi.com/products/category/${id}`
-      );
-      const category = await res.json();
-      commit("SET_CATEGORY_TO_STATE", category);
+      const { data } = await getFetch(`categoryies/${id}`);
+      commit("SET_CATEGORY_TO_STATE", data);
     } catch (error) {
       commit("SET_CATEGORY_ERROR", error);
       console.log(error);

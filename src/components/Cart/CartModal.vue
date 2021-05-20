@@ -5,12 +5,7 @@
       <button @click="CHANGE_STATE_CART" class="MiniCart-Close"></button>
     </div>
     <ul class="MiniCart-ItemWrapper">
-      <li
-        v-for="(item, index) in CART_ITEMS"
-        :key="item.id"
-        aria-label="Cart Item"
-        class="CartItem"
-      >
+      <li v-for="(item, index) in CART_ITEMS" :key="item.id" class="CartItem">
         <div class="CartItem-Info CartItem-Info_isMinicart">
           <div class="CartItem-Info">
             <img :src="item.image" :alt="item.title" />
@@ -19,7 +14,12 @@
             <p>{{ item.title }}</p>
           </div>
           <div class="Field Field_type_qty CartItem-QtySelector">
-            <input id="QtySelector" type="qty" value="1" />
+            <input
+              id="QtySelector"
+              type="qty"
+              readonly
+              :value="CART_ITEMS[index].quantity"
+            />
             <button @click="INCREMENT_CART_ITEM(index)">
               <span>+</span></button
             ><button @click="DECCREMENT_CART_ITEM(index)">
@@ -98,7 +98,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-/*! CSS Used from: https://www.technodom.kz/static/version1620861655823/frontend/Technodom/pwa/en_US/Magento_Theme/bundle.css?0d250d95d5f73849b14c */
 .Field {
   margin-top: 1rem;
 }
@@ -224,27 +223,7 @@ export default {
     width: 100%;
   }
 }
-.ProductWishlistButton-Button {
-  --button-background: transparent;
-  --button-hover-background: var(--color-primary-base);
-  --button-hover-color: var(--color-text-white);
-  --button-color: var(--color-primary-base);
-  --button-border-width: 1px;
-  --button-padding: 1rem;
-}
-.ProductWishlistButton-Button svg {
-  fill: var(--header-wishlist-heart-border);
-  -webkit-transition: fill 0.15s;
-  transition: fill 0.15s;
-  will-change: fill;
-}
-.ProductWishlistButton-Button .remove {
-  --header-wishlist-heart-border: #000;
-  margin: auto;
-}
-.ProductWishlistButton-Button .remove:hover {
-  opacity: 0.8;
-}
+
 .ProductWishlistButton-Button_iconOnly {
   --button-background: transparent;
   --button-hover-background: transparent;
@@ -294,22 +273,11 @@ export default {
   display: block;
 }
 .CartItem {
-  grid-template-columns: 10rem auto;
-  grid-column-gap: 0.5rem;
-  padding: 0 2.5rem 0 0;
-  border-bottom: 1px solid var(--color-neutral-light);
-  border-left: var(--border-standart);
-  border-right: var(--border-standart);
+  display: flex;
+  flex-direction: column;
 }
 .CartItem:before {
   content: none;
-}
-.CartItem a {
-  padding: 0;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
 }
 .CartItem a:hover,
 .CartItem a:link {
@@ -331,10 +299,6 @@ export default {
     top: -0.1rem;
   }
 }
-.CartItem-Info {
-  margin-top: 1rem;
-  grid-template-columns: auto;
-}
 @media (min-width: 768px) {
   .CartItem-Price {
     width: 120px;
@@ -349,33 +313,15 @@ export default {
   margin-top: 0;
 }
 .CartItem {
-  font-family: MuseoSansCyrl, sans-serif;
-  margin: 0;
-  padding: 1rem 0;
-  display: grid;
-  grid-template-columns: auto;
-  border-bottom: 3px solid var(--color-neutral-light);
+  padding: 1rem;
 }
 .CartItem:last-child {
   margin: 0;
   border-bottom: 0;
 }
 .CartItem-Title {
-  grid-area: title;
-  min-width: 0;
-  font-weight: 500;
-  color: var(--color-text-black);
-  text-align: left;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
 }
-@media (max-width: 767px) {
-  .CartItem-Title {
-    align-self: center;
-  }
-}
+
 .CartItem-Title a {
   width: 90%;
   display: block;
@@ -387,16 +333,8 @@ export default {
   white-space: normal;
 }
 .CartItem .CartItem-QtySelector {
-  grid-area: qty;
-  --input-type-number-width: 7rem;
-  align-self: center;
-  margin-top: 0;
 }
-@media (max-width: 767px) {
-  .CartItem .CartItem-QtySelector {
-    justify-self: start;
-  }
-}
+
 .CartItem .CartItem-QtySelector input {
   border: 0;
   text-align: center;
@@ -452,22 +390,9 @@ export default {
   background-color: initial;
 }
 .CartItem-Actions {
-  grid-area: actions;
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  -webkit-box-pack: center;
-  justify-content: center;
+  display: flex;
 }
-@media (max-width: 1023px) {
-  .CartItem-Actions {
-    justify-self: end;
-  }
-}
-@media (max-width: 767px) {
-  .CartItem-Actions {
-    justify-self: end;
-  }
-}
+
 .CartItem-Actions_isMinicart {
   justify-self: end;
 }
@@ -478,29 +403,9 @@ export default {
   margin: 0;
 }
 .CartItem-Info {
-  display: grid;
-  margin: 0;
-  width: 100%;
-  grid-column-gap: 1rem;
-  grid-row-gap: 1rem;
 }
-@media (max-width: 1023px) {
-  .CartItem-Info {
-    grid-template-rows: auto auto;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-areas: "thumbnail title title price" "qty . actions actions";
-  }
-}
-@media (max-width: 1023px) and (min-width: 768px) {
-  .CartItem-Info {
-    grid-template-areas: "thumbnail title title price" "qty . . actions";
-  }
-}
+
 .CartItem-Info_isMinicart {
-  margin-right: 1rem;
-  grid-template-rows: auto auto;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-areas: "thumbnail title title price" "qty . actions actions";
 }
 .CartItem-Info_isMinicart .CartItem-Thumbnail {
   margin: 0 1rem;
@@ -509,9 +414,6 @@ export default {
   margin-left: 1rem;
 }
 .CartItem-Thumbnail {
-  grid-area: thumbnail;
-  height: 58px;
-  width: 58px;
 }
 @media (max-width: 1024px) {
   .CartItem-Thumbnail {
@@ -619,27 +521,18 @@ export default {
 }
 .MiniCart-Title {
   width: 100%;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
   padding: 1rem;
-  border-bottom: 1px solid var(--color-neutral-light);
+  border-bottom: 1px solid $color-neutral-light;
 }
-.MiniCart-ItemWrapper,
-.MiniCart-Title {
-  background-color: var(--color-cart-background);
-}
+
 .MiniCart-ItemWrapper {
-  max-height: 300px;
+  max-height: 500px;
   overflow-y: auto;
+  /* padding: 1rem; */
 }
 .MiniCart-Close {
-  --button-background: transparent;
-  --button-border: transparent;
-  --button-padding: 0;
-  --button-hover-background: transparent;
-  --button-hover-border: transparent;
-  --button-hover-color: var(--button-color);
-  --button-color: #000;
   height: 40px;
   width: 40px;
   position: absolute;
@@ -670,8 +563,6 @@ export default {
   width: 100%;
   border-radius: 0 0 5px 5px;
   padding: 1rem 0;
-  border-top: 1px solid var(--color-neutral-light);
-  background-color: var(--color-cart-background);
 }
 .MiniCart-Summary li {
   -webkit-box-pack: justify;
@@ -701,16 +592,15 @@ export default {
 .MiniCart-Container {
   position: absolute;
   padding: 0.5rem;
-  right: 0;
+  top: 62px;
+  right: -10px;
   z-index: 1;
-  display: -webkit-box;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
   flex-direction: column;
   width: 360px;
-  max-height: 504px;
+  max-height: 500px;
   background-color: $white;
+  color: $gray-90;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   -webkit-transition: opacity 0.15s ease-in 0.15s,
     -webkit-transform 0.15s ease-in 0.2s;
@@ -720,9 +610,7 @@ export default {
     -webkit-transform 0.15s ease-in 0.2s;
   overflow-y: auto;
 }
-.MiniCart-Container a {
-  color: $gray-90;
-}
+
 .MiniCart .CartItem {
   border-left: 0;
   border-right: 0;

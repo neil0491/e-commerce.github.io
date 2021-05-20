@@ -33,6 +33,11 @@ export default {
     border-radius: 20px;
     background-color: $white;
     font-weight: 300;
+    @media (max-width: 767px) {
+      padding: 6px 1.5rem;
+      border: 1px solid $gray-30;
+      font-size: 1.05rem;
+    }
   }
   &__button {
     position: absolute;
@@ -50,8 +55,12 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 14;
+    z-index: 1;
     cursor: pointer;
+    @media (max-width: 767px) {
+      background: transparent;
+      color: $gray-30;
+    }
   }
 }
 </style>

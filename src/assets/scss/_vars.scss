@@ -30,11 +30,9 @@ $button-padding: 10px 30px;
 $button-color: $white;
 $button-background: $color-primary-base;
 $button-border: $color-primary-base;
-$button-hover-color: $white;
+$button-hover-color: $ui-red;
 $button-hover-border: $color-primary-base;
 $button-disabled-color: $gray-75;
-$button-border-width: 1px;
-$button-border-radius: 24px;
 $placeholder-color: $gray-10;
 $br-s: 8px;
 $placeholder-image: linear-gradient(90deg, rgba(0, 0, 0, 0.08) 0, rgba(0, 0, 0, 0.15) 15%, rgba(0, 0, 0, 0.08) 30%);
@@ -254,6 +252,9 @@ $button-border-radius: 24px;
 $padding-form: 0.6rem;
 $input-type-number-width: 80px;
 $button-padding: 10px 30px;
+$height-mobile-menu: 60px;
+
+$border-card: 8px;
 
 $grid-breakpoints: (
   xs: 0,
@@ -262,6 +263,13 @@ $grid-breakpoints: (
   lg: 992px,
   xl: 1200px,
   xxl: 1400px,
+);
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1180px,
+  xxl: 1380px
 );
 
 $grid-columns: 12;

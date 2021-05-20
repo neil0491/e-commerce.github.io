@@ -1,5 +1,3 @@
-import { sum } from "ramda";
-
 const mutations = {
   SET_CART(state, product) {
     if (state.cartItems.length) {
@@ -26,7 +24,6 @@ const mutations = {
     }
   },
   INCREMENT(state, index) {
-    console.log(index);
     state.cartItems[index].quantity++;
   },
   CHANGE(state) {
@@ -53,10 +50,15 @@ const actions = {
 };
 
 const getters = {
-  CART_TOTAL_PRICE: ({ cartItems }) => sum(cartItems.map((item) => item.price)),
+  CART_TOTAL_PRICE: ({ cartItems }) =>
+    cartItems.reduce((total, item) => total + item.quantity * item.price, 0),
   CART_COUNT: ({ cartItems }) => cartItems.length,
   CART_ITEMS: ({ cartItems }) => cartItems,
   IS_CART_STATE: ({ isCartState }) => isCartState,
+  GET_TOTAL_CART: ({ cartItems }) => {
+    const tottal = cartItems.reduce((total, item) => total + item.quantity, 0);
+    return tottal;
+  },
 };
 
 const state = () => ({

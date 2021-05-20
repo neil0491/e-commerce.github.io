@@ -1,22 +1,21 @@
 <template>
-  <nav class="nav py-3 px-4">
+  <nav class="nav px-4">
     <ul class="nav__list">
       <li class="nav__list-item">
-        <router-link to="/products"
-          ><i class="me-2 fas fa-list-ul"></i>Все категории </router-link
-        >|
+        <div class="menu" @click="OPEN_MENU">
+          <i class="me-2 fas fa-list-ul"></i>Все категории
+        </div>
       </li>
       <li class="nav__list-item">
-        <router-link to="/">Новинки</router-link>
+        <router-link to="/">Главная</router-link>
       </li>
       <li class="nav__list-item">
-        <router-link to="/">Одежда</router-link>
+        <router-link to="/products">Все товары</router-link>
       </li>
     </ul>
-    <button @click="CHANGE_STATE_CART" class="nav__cart">
+    <button @click="goToCart" class="nav__cart">
       <div class="icon-block">
         <i class="fas fa-shopping-cart"></i>
-
         <div v-show="CART_COUNT" class="badge">{{ CART_COUNT }}</div>
       </div>
     </button>
@@ -27,7 +26,15 @@
 import { mapActions, mapGetters } from "vuex";
 export default {
   methods: {
-    ...mapActions(["OPEN_MODAL", "OPEN_REGISTRATION", "CHANGE_STATE_CART"]),
+    ...mapActions([
+      "OPEN_MODAL",
+      "OPEN_REGISTRATION",
+      "CHANGE_STATE_CART",
+      "OPEN_MENU",
+    ]),
+    goToCart() {
+      this.$router.push({ name: "Cart" });
+    },
   },
   computed: {
     ...mapGetters(["CART_COUNT"]),
@@ -36,24 +43,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.icon-block {
-  position: relative;
-  .badge {
-    position: absolute;
-    left: -10px;
-    bottom: -3px;
-    background: $ui-red;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-    text-align: center;
-    color: $white;
-  }
+.menu {
+  cursor: pointer;
+  padding-right: 1rem;
+  border-right: 1px solid $gray-10;
 }
 .nav {
   display: flex;
   justify-content: space-between;
+  height: $height-mobile-menu;
   &__list {
     display: flex;
     align-items: center;

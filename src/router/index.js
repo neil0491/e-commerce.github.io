@@ -18,12 +18,17 @@ const routes = [
   },
   {
     path: "/products",
-    name: "About",
+    name: "Products",
     component: () => import("../views/Products.vue"),
   },
   {
+    path: "/cart",
+    name: "Cart",
+    component: () => import("../views/CartScreen.vue"),
+  },
+  {
     path: "*",
-    component: { render: (h) => h("div", ["404! Page Not Found!"]) },
+    component: () => import("../views/404page"),
   },
 ];
 

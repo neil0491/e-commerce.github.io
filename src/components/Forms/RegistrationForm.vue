@@ -47,7 +47,6 @@
             <div class="FieldNext__Wrapper FieldNext__Wrapper_v1">
               <input
                 class="FieldNext FieldNext_KeepLabel"
-                id="password"
                 name="password"
                 type="password"
                 value=""
@@ -60,7 +59,6 @@
             <div class="FieldNext__Wrapper FieldNext__Wrapper_v1">
               <input
                 class="FieldNext FieldNext_KeepLabel"
-                id="password"
                 name="password"
                 type="password"
                 value=""

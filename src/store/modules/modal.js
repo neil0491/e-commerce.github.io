@@ -2,6 +2,7 @@
 const state = () => ({
   modalEnter: false,
   modalRegistration: false,
+  menu: false,
 });
 
 // getters
@@ -11,6 +12,9 @@ const getters = {
   },
   GET_IS_MODAL_REGISTRATION(state) {
     return state.modalRegistration;
+  },
+  GET_MENU(state) {
+    return state.menu;
   },
 };
 
@@ -28,6 +32,12 @@ const actions = {
   CLOSE_REGISTRATION({ commit }) {
     commit("STATE_CLOSE_REGISTRATION");
   },
+  OPEN_MENU({ commit }) {
+    commit("STATE_OPEN_MENU");
+  },
+  CLOSE_MENU({ commit }) {
+    commit("STATE_CLOSE_MENU");
+  },
 };
 
 // mutations
@@ -43,6 +53,12 @@ const mutations = {
   },
   STATE_CLOSE_REGISTRATION(state) {
     state.modalRegistration = false;
+  },
+  STATE_OPEN_MENU(state) {
+    state.menu = true;
+  },
+  STATE_CLOSE_MENU(state) {
+    state.menu = false;
   },
 };
 

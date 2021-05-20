@@ -9,6 +9,8 @@ import "./assets/scss/style.scss";
 
 Vue.config.productionTip = false;
 
+console.log(process.env.WEBSITE);
+
 new Vue({
   router,
   store,

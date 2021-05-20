@@ -8,8 +8,11 @@
       >
         <router-link :to="{ name: 'Product', params: { id: card.id } }">
           <div class="card">
-            <img :src="card.image" :alt="card.id" />
-            <div class="card__content pt-4">
+            <img
+              :src="'http://localhost:1337' + card.image.url"
+              :alt="card.id"
+            />
+            <div class="card__content pt-2">
               <h5>{{ card.title }}</h5>
               <p class="card__subtitle">$ {{ card.price }}</p>
             </div>
@@ -26,6 +29,7 @@ export default {
   props: {
     cards: Array,
   },
+  mounted() {},
 };
 </script>
 
@@ -58,9 +62,8 @@ export default {
       -webkit-line-clamp: 2;
       text-overflow: ellipsis;
       overflow: hidden;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 500;
-      
     }
   }
 

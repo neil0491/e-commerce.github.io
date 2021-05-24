@@ -23,7 +23,6 @@ export default {
   },
   watch: {
     checked() {
-      console.log(this.checked);
       this.SET_ID_BRANDS(this.checked);
     },
   },

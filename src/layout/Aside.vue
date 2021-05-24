@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div>
     <accordion title="Цена">
       <price class="py-2" />
     </accordion>

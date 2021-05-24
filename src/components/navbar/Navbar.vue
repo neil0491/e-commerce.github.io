@@ -26,12 +26,7 @@
 import { mapActions, mapGetters } from "vuex";
 export default {
   methods: {
-    ...mapActions([
-      "OPEN_MODAL",
-      "OPEN_REGISTRATION",
-      "CHANGE_STATE_CART",
-      "OPEN_MENU",
-    ]),
+    ...mapActions(["OPEN_MENU"]),
     goToCart() {
       this.$router.push({ name: "Cart" });
     },

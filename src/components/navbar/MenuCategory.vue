@@ -5,7 +5,7 @@
         <button @click="CLOSE_MENU" class="prev">
           <i class="fas fa-chevron-left"></i>
         </button>
-        <h4>LOGO</h4>
+        <img class="logo" src="/img/logo-1.png" alt="logo" />
       </div>
       <ul>
         <li
@@ -44,6 +44,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.logo {
+  width: 100px;
+  margin: 0 80px;
+}
+
 .prev {
   background: transparent;
 }

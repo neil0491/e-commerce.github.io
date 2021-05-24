@@ -85,9 +85,6 @@ export default {
       this.$router.push({ name: "Cart" });
     },
   },
-  // mounted() {
-  //   this.FETCH_PRODUCT(this.$route.params.id);
-  // },
 };
 </script>
 

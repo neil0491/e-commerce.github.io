@@ -43,21 +43,35 @@ export default {
       "IS_MOBILE",
       "IS_DESKTOP",
       "GET_MENU",
-      "GET_ALL_CATEGORIES",
       "GET_IS_MODAL",
       "GET_IS_MODAL_REGISTRATION",
     ]),
   },
+  watch: {
+    // eslint-disable-next-line no-unused-vars
+    $route(to, from) {
+      this.SET_MIN_PRICE(null);
+      this.SET_MAX_PRICE(null);
+      this.CLEAR_SUBMIT_PRICE();
+      this.SET_ID_BRANDS([]);
+    },
+  },
+
   methods: {
     ...mapActions([
       "SET_MOBILE",
       "SET_DESKTOP",
       "OPEN_MODAL",
       "OPEN_REGISTRATION",
-      "FETCH_ALL_CATEGORIES",
     ]),
 
-    ...mapMutations(["SET_FOCUS_SEARCH"]),
+    ...mapMutations([
+      "SET_FOCUS_SEARCH",
+      "SET_MIN_PRICE",
+      "SET_MAX_PRICE",
+      "CLEAR_SUBMIT_PRICE",
+      "SET_ID_BRANDS"
+    ]),
     closeSearchPaper() {
       this.SET_FOCUS_SEARCH(false);
     },
@@ -70,8 +84,6 @@ export default {
     },
   },
   mounted() {
-    this.FETCH_ALL_CATEGORIES();
-    console.log(process.env.VUE_APP_WEBSITE);
     let vm = this;
     addEventListener("resize", () => {
       if (window.innerWidth > 767) {

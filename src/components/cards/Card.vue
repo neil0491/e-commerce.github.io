@@ -2,7 +2,7 @@
   <div>
     <div class="row">
       <div
-        v-for="card in cards"
+        v-for="card in filtringProduct"
         :key="card.id"
         class="col-6 col-md-4 col-lg-3 py-1"
       >
@@ -24,10 +24,49 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
 export default {
   name: "Card",
   props: {
     cards: Array,
+  },
+  data() {
+    return {};
+  },
+
+  computed: {
+    ...mapGetters([
+      "GET_ID_BRANDS",
+      "GET_SUBMIT_PRICE",
+      "GET_MAX_PRICE",
+      "GET_MIN_PRICE",
+    ]),
+    brandsCard() {
+      return this.cards.filter((product) => {
+        product.brands.map((brand) => this.arrayBrands.push(brand.id));
+      });
+    },
+    filtringProduct() {
+      if (this.GET_ID_BRANDS.length) {
+        return this.cards.filter((data) =>
+          data.brands.some((brand) => {
+            return this.GET_ID_BRANDS.indexOf(brand.id) !== -1;
+          })
+        );
+      }
+      if (this.GET_SUBMIT_PRICE) {
+        return this.cards.filter((product) =>
+          product.price > this.GET_MIN_PRICE &&
+          product.price < this.GET_MAX_PRICE
+            ? product
+            : ""
+        );
+      }
+      return this.cards;
+    },
+  },
+  methods: {
+    ...mapMutations["CLEAR_SUBMIT_PRICE"],
   },
   mounted() {},
 };

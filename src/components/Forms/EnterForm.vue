@@ -49,11 +49,11 @@
                 </p>
               </button>
             </div>
-            <div class="MyAccount-ForgotPassword">
+            <!-- <div class="MyAccount-ForgotPassword">
               <button type="button" class="Button Button_likeLink">
                 Забыли пароль?
               </button>
-            </div>
+            </div> -->
           </div>
           <div class="MyAccount-Buttons MyAccount-Buttons_state_signIn">
             <button
@@ -111,7 +111,6 @@ export default {
         this.loading = true;
         const response = await strapi.login(this.email, this.password);
         this.loading = false;
-        console.log(response);
         this.setUser(response.user);
         this.CLOSE_MODAL();
       } catch (err) {

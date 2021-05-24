@@ -25,9 +25,12 @@
         </div>
       </li>
       <li class="nav__item">
-        <div @click="OPEN_MODAL" class="nav__icons">
+        <div v-if="!isUserAuth" @click="OPEN_MODAL" class="nav__icons">
           <i class="fas fa-user"></i>
           <span>Войти</span>
+        </div>
+        <div v-else @click="logoutUser" class="nav__icons">
+          <i class="fas fa-user"></i> <span>Выйти</span>
         </div>
       </li>
     </ul>
@@ -35,18 +38,22 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions, mapGetters, mapMutations } from "vuex";
 export default {
   components: {},
   data: () => ({}),
   methods: {
     ...mapActions(["CHANGE_STATE_CART", "OPEN_MENU", "OPEN_MODAL"]),
+    logoutUser() {
+      this.logout();
+    },
     goToCart() {
       this.$router.push({ name: "Cart" });
     },
   },
   computed: {
-    ...mapGetters(["CART_COUNT", "GET_MENU"]),
+    ...mapGetters(["CART_COUNT", "GET_MENU", "isUserAuth"]),
+    ...mapMutations(["logout"]),
   },
 };
 </script>

@@ -8,7 +8,11 @@
         @focus.stop="SET_FOCUS_SEARCH(true)"
         v-model="inputSearch"
       />
-      <button type="button" class="header-search__button">
+      <button
+        @click="SET_FOCUS_SEARCH(true)"
+        type="button"
+        class="header-search__button"
+      >
         <i class="fas fa-search"></i>
       </button>
     </form>

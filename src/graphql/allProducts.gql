@@ -3,8 +3,16 @@ query ($sort: String) {
     id
     title
     price
+    brands {
+      id
+      title
+    }
     image {
       url
     }
+  }
+  brands {
+    id
+    title
   }
 }

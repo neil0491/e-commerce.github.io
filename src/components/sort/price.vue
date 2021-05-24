@@ -1,22 +1,82 @@
 <template>
   <form class="input">
     <div class="input__header">
-      <input class="input__price" placeholder="от" type="text" />
-      <input class="input__price" placeholder="до" type="text" />
+      <input
+        v-model="minPrice"
+        class="input__price"
+        placeholder="от"
+        min="0"
+        type="number"
+      />
+      <input
+        v-model="maxPrice"
+        class="input__price"
+        placeholder="до"
+        min="0"
+        type="number"
+      />
     </div>
-    <input
-      class="input__button btn btn-primary"
-      type="button"
-      value="Применить"
-    />
+    <div class="input__button-group">
+      <input
+        class="input__button btn btn-primary"
+        type="button"
+        value="Сброс"
+        @click="clearSubmit"
+      />
+      <input
+        class="input__button btn btn-primary"
+        type="button"
+        value="Применить"
+        @click="submitPrice"
+      />
+    </div>
   </form>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    submitPrice() {
+      this.$store.commit("SET_SUBMIT_PRICE");
+    },
+    clearSubmit() {
+      this.$store.commit("CLEAR_SUBMIT_PRICE");
+      this.$store.commit("SET_MIN_PRICE", 0);
+      this.$store.commit("SET_MAX_PRICE", 0);
+    },
+  },
+  computed: {
+    minPrice: {
+      get() {
+        return this.$store.state.minPrice;
+      },
+      set(minPrice) {
+        return this.$store.commit("SET_MIN_PRICE", minPrice);
+      },
+    },
+    maxPrice: {
+      get() {
+        return this.$store.state.maxPrice;
+      },
+      set(maxPrice) {
+        return this.$store.commit("SET_MAX_PRICE", maxPrice);
+      },
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
+input[type="number"] {
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  display: none;
+}
 .input {
   display: flex;
   flex-direction: column;
@@ -39,9 +99,15 @@ export default {};
     margin-left: auto;
   }
   &__button {
-    padding: 0 1rem;
-    margin-left: auto;
+    display: block;
+    padding: 0 0.5rem;
+    margin-right: 5px;
     font-size: 0.8rem;
+  }
+  &__button-group {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
 }
 </style>

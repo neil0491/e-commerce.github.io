@@ -3,14 +3,17 @@ import cookieparser from "cookieparser";
 
 // Defining an empty state
 const state = () => ({
+  authUser: false,
   user: {},
 });
 
 // Define a getter in order to get your current username from your state
 const getters = {
   username: (state) => {
-    console.log(state.user);
     return state.user.username;
+  },
+  isUserAuth: (state) => {
+    return state.authUser;
   },
 };
 
@@ -21,7 +24,6 @@ export const actions = {
       const parsed = cookieparser.parse(req.headers.cookie);
       user = (parsed.user && JSON.parse(parsed.user)) || null;
     }
-    console.log(user);
     commit("setUser", user);
   },
 };
@@ -30,10 +32,12 @@ export const actions = {
 const mutations = {
   setUser(state, user) {
     state.user = user;
+    state.authUser = true;
     Cookies.set("user", user);
   },
   logout(state) {
     state.user = null;
+    state.authUser = false;
     Cookies.set("user", null);
   },
 };

@@ -15,13 +15,16 @@
         <div class="col-10 col-md-7 header-search__search">
           <search />
         </div>
-        <div class="col-2 header-search__login">
+        <div v-if="!username" class="col-2 header-search__login">
           <div @click="OPEN_MODAL">
             <Button outline button-text="Войти" />
           </div>
           <div @click="OPEN_REGISTRATION">
             <Button button-text="Регистрация" />
           </div>
+        </div>
+        <div class="col-2 header-search__login">
+          {{ username }}
         </div>
       </div>
     </section>
@@ -57,7 +60,13 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["IS_CART_STATE", "IS_DESKTOP", "IS_MOBILE", "GET_MENU"]),
+    ...mapGetters([
+      "IS_CART_STATE",
+      "IS_DESKTOP",
+      "IS_MOBILE",
+      "GET_MENU",
+      "username",
+    ]),
   },
 };
 </script>

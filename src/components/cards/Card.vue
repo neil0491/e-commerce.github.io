@@ -14,7 +14,7 @@
             />
             <div class="card__content pt-2">
               <h5>{{ card.title }}</h5>
-              <p class="card__subtitle">$ {{ card.price }}</p>
+              <p class="card__subtitle">{{ card.price }} тг.</p>
             </div>
           </div>
         </router-link>

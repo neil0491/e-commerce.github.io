@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import store from "../store";
 // import Home from "../views/Home.vue";
 // import CartScreen from "../views/CartScreen.vue";
 
@@ -22,9 +23,27 @@ const routes = [
     component: () => import("../views/Products.vue"),
   },
   {
+    path: "/category/:id",
+    name: "Category",
+    component: () => import("../views/Category.vue"),
+  },
+  {
+    path: "/brands/:id",
+    name: "Brands",
+    component: () => import("../views/Brands.vue"),
+  },
+  {
     path: "/cart",
     name: "Cart",
     component: () => import("../views/CartScreen.vue"),
+  },
+  {
+    path: "/auth",
+    name: "Auth",
+    component: () => import("../views/Auth.vue"),
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "*",
@@ -38,4 +57,16 @@ const router = new VueRouter({
   routes,
 });
 
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (store.getters.username) {
+      console.log(store.getters.username);
+      next("/auth");
+      return;
+    }
+    next();
+  } else {
+    next();
+  }
+});
 export default router;

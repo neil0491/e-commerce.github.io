@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <menu-category :cateegories="GET_ALL_CATEGORIES" v-if="GET_MENU" />
+    <menu-category v-if="GET_MENU" />
     <modal v-if="GET_IS_MODAL">
       <enter-form></enter-form>
     </modal>
@@ -8,8 +8,9 @@
       <registration-form></registration-form>
     </modal>
     <app-header></app-header>
+    <search-list />
     <main>
-      <div class="main-wrapper">
+      <div @click="closeSearchPaper" class="main-wrapper">
         <router-view />
       </div>
     </main>
@@ -17,13 +18,14 @@
   </div>
 </template>
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions, mapGetters, mapMutations } from "vuex";
 import AppHeader from "./layout/AppHeader.vue";
 import Footer from "./layout/Footer.vue";
 import MenuCategory from "@/components/navbar/MenuCategory.vue";
 import EnterForm from "@/components/Forms/EnterForm.vue";
 import RegistrationForm from "@/components/Forms/RegistrationForm.vue";
 import Modal from "@/components/modal/Modal.vue";
+import SearchList from "./components/navbar/searchList.vue";
 
 export default {
   name: "App",
@@ -34,6 +36,7 @@ export default {
     Modal,
     EnterForm,
     RegistrationForm,
+    SearchList,
   },
   computed: {
     ...mapGetters([
@@ -54,6 +57,11 @@ export default {
       "FETCH_ALL_CATEGORIES",
     ]),
 
+    ...mapMutations(["SET_FOCUS_SEARCH"]),
+    closeSearchPaper() {
+      this.SET_FOCUS_SEARCH(false);
+    },
+
     openModal() {
       this.OPEN_MODAL();
     },
@@ -63,7 +71,7 @@ export default {
   },
   mounted() {
     this.FETCH_ALL_CATEGORIES();
-
+    console.log(process.env.VUE_APP_WEBSITE);
     let vm = this;
     addEventListener("resize", () => {
       if (window.innerWidth > 767) {
@@ -83,7 +91,7 @@ export default {
   display: flex;
   flex-direction: column;
   z-index: 0;
-  .main-wrapper{
+  .main-wrapper {
     max-width: 1400px;
     padding: 0 15px;
     margin: 0 auto;

@@ -1,19 +1,38 @@
 <template>
-  <form class="header-search">
-    <input
-      type="text"
-      class="header-search__input"
-      placeholder="Я хочу найти..."
-    />
-    <button type="button" class="header-search__button">
-      <i class="fas fa-search"></i>
-    </button>
-  </form>
+  <div>
+    <form class="header-search">
+      <input
+        type="text"
+        class="header-search__input"
+        placeholder="Я хочу найти..."
+        @focus.stop="SET_FOCUS_SEARCH(true)"
+        v-model="inputSearch"
+      />
+      <button type="button" class="header-search__button">
+        <i class="fas fa-search"></i>
+      </button>
+    </form>
+  </div>
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   name: "Search",
+  computed: {
+    inputSearch: {
+      get() {
+        return this.$store.state.inputSerch;
+      },
+      set(value) {
+        return this.SET_INPUT_SEARCH(value);
+      },
+    },
+  },
+
+  methods: {
+    ...mapMutations(["SET_INPUT_SEARCH", "SET_FOCUS_SEARCH"]),
+  },
 };
 </script>
 

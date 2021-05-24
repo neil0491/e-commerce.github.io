@@ -21,7 +21,7 @@ export default {};
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
   &__header {
     width: 100%;
     display: flex;

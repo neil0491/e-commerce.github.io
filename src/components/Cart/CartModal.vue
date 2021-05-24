@@ -28,7 +28,11 @@
           </div>
           <div class="CartItem-Actions CartItem-Actions_isMinicart">
             <button
-              class="ProductWishlistButton-Button ProductWishlistButton-Button_iconOnly ProductWishlistButton-Button_notIsProductInWishlist"
+              class="
+                ProductWishlistButton-Button
+                ProductWishlistButton-Button_iconOnly
+                ProductWishlistButton-Button_notIsProductInWishlist
+              "
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

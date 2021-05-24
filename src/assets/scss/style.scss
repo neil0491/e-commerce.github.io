@@ -83,16 +83,6 @@ img {
   object-fit: cover;
 }
 
-.typography-subtitle {
-  font-weight: 600;
-  font-size: 1.5rem;
-}
-
-.aria-label {
-  padding-bottom: 1rem;
-}
-
-
 
 .bottom-border {
   border-bottom: 1px solid $gray-10;
@@ -143,6 +133,7 @@ img {
 .btn:disabled {
   opacity: 0.65;
   box-shadow: none;
+  cursor: not-allowed;
 }
 .btn-primary {
   color: #fff;
@@ -177,6 +168,7 @@ img {
   color: #212529;
   background-color: #f0f2f4;
   border-color: #f0f2f4;
+  cursor: not-allowed;
 }
 .btn-block {
   display: block;

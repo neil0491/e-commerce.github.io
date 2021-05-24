@@ -1,0 +1,10 @@
+query ($sort: String) {
+  products(sort: $sort) {
+    id
+    title
+    price
+    image {
+      url
+    }
+  }
+}

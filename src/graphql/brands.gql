@@ -1,0 +1,14 @@
+query ($id: ID!) {
+  brands(where: { id: $id }) {
+    id
+    title
+    products {
+      id
+      title
+      price
+      image {
+        url
+      }
+    }
+  }
+}

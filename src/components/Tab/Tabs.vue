@@ -37,7 +37,7 @@ export default {
   methods: {
     selectTab(i) {
       this.selectedIndex = i;
-      this.tabs.forEach((tab, index) => {
+      this.tabs.map((tab, index) => {
         tab.isActive = index === i;
       });
     },

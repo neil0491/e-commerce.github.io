@@ -34,14 +34,6 @@ export default {
   name: "Slider",
   props: ["images"],
   data: () => ({
-    // slides: [
-    //   "https://images.samsung.com/is/image/samsung/assets/ru/galaxy-a52/buy/A52_AwesomeBlack_ProductKV_MO_img.jpg",
-
-    //   "https://images.samsung.com/is/image/samsung/assets/ru/galaxy-a52/buy/A52_GroupKV_MO_img_local.jpg?imwidth=720",
-    //   "https://samsung-sam.uz/wp-content/uploads/2021/04/a52_1111.jpg",
-
-    //   "https://samsung-sam.uz/wp-content/uploads/2021/04/a52_1111.jpg",
-    // ],
     hooperSettings: {
       itemsToShow: 4,
       centerMode: true,
@@ -56,11 +48,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.container-slide{
+  margin-bottom: 1rem;
+}
 .hooper-list {
   height: 100px;
 }
 .top-slide {
   height: 400px;
+
+  @media (max-width: 767px) {
+    height: 300px;
+  }
 }
 .hooper__img {
   object-fit: contain;

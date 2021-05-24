@@ -21,7 +21,7 @@ export default {};
   margin: 1rem auto;
   background: $white;
   text-align: center;
-  span{
+  span {
     margin-top: 1rem;
     font-size: 2rem;
   }

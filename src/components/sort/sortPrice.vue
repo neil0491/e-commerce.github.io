@@ -1,19 +1,41 @@
 <template>
   <div class="sort-price">
-    <span class="sort-price__header">Продуктов</span>
+    <span class="sort-price__header">
+      Продуктов: {{ categories[0].products.length }}
+    </span>
     <div class="sort-price__category">
-      <label for="sort">Сортировать</label>
-      <select name="sort">
-        <option value="default"></option>
-        <option value="DESC">Возрастанию цены</option>
-        <option value="ASC">Убыванию цены</option>
+      <label for="sort">Сортировать цену</label>
+      <select v-model="selected" @change="select" name="sort">
+        <option
+          v-for="(select, index) in selectOption"
+          :key="index"
+          :value="select.value"
+        >
+          {{ select.title }}
+        </option>
       </select>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    categories: Array,
+  },
+  data: () => ({
+    selectOption: [
+      { value: "asc", title: "По возрастанию" },
+      { value: "desc", title: "По убыванию" },
+    ],
+    selected: "",
+  }),
+  methods: {
+    select() {
+      this.$emit("sortProduct", this.selected);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

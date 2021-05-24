@@ -1,33 +1,29 @@
 <template>
   <div class="product">
-    <div class="row">
+    <loading-query v-if="$apollo.loading" />
+    <div v-else class="row">
       <div class="product__gallery col-12 col-md-5">
-        <slider-cart :images="GET_PRODUCT.images" v-if="IS_DESKTOP" />
-        <slider v-if="IS_MOBILE" />
+        <slider-cart :images="products[0].images" />
       </div>
       <div class="col-12 col-md-7">
         <div>
-          <img
-            class="product__logo"
-            :src="'http://localhost:1337' + GET_PRODUCT.brands[0].logo[0].url"
-            alt="Logo"
-          />
+          <img class="product__logo" :src="getImg()" alt="Logo" />
           <h1 class="product__title">
-            {{ GET_PRODUCT.title }}
+            {{ products[0].title }}
           </h1>
           <span class="product__articule"
-            >Артикул: {{ GET_PRODUCT.articul }}</span
+            >Артикул: {{ products[0].articul }}</span
           >
-          <p class="product__price top-border">$ {{ GET_PRODUCT.price }}</p>
+          <p class="product__price top-border">{{ products[0].price }} тг.</p>
           <div class="product__button button-block">
             <button
-              @click="addToCArt(GET_PRODUCT)"
+              @click="addToCArt(products[0])"
               class="btn button-block__add"
             >
               Добавить в корзину
             </button>
             <button
-              @click="routingCart(GET_PRODUCT)"
+              @click="routingCart(products[0])"
               class="btn button-block__cart"
             >
               Перейти в корзину
@@ -36,11 +32,11 @@
         </div>
         <div class="product__description">
           <span style="font-weight: bold"> Описание </span>
-          <div v-html="GET_PRODUCT.description"></div>
+          <div v-html="products[0].description"></div>
         </div>
       </div>
       <div class="col-12 p-4">
-        <div v-html="GET_PRODUCT.feature"></div>
+        <div v-html="products[0].feature"></div>
       </div>
     </div>
   </div>
@@ -48,19 +44,38 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import Slider from "../components/slider/Slider.vue";
+import LoadingQuery from "../components/loading/loadingQuery.vue";
 import SliderCart from "../components/slider/SliderCart.vue";
 
+import product from "../graphql/product.gql";
+
 export default {
-  components: { SliderCart, Slider },
+  components: { SliderCart, LoadingQuery },
   data: () => ({
-    color: null,
+    products: [],
   }),
+
+  apollo: {
+    products: {
+      prefetch: true,
+      query: product,
+      variables() {
+        return {
+          id: this.$route.params.id,
+        };
+      },
+    },
+  },
   computed: {
-    ...mapGetters(["GET_PRODUCT", "IS_MOBILE", "IS_DESKTOP"]),
+    ...mapGetters(["IS_MOBILE"]),
   },
   methods: {
-    ...mapActions(["FETCH_PRODUCT", "ADD_TO_CART"]),
+    ...mapActions(["ADD_TO_CART"]),
+    getImg() {
+      return (
+        process.env.VUE_APP_WEBSITE + this.products[0].brands[0].logo[0].url
+      );
+    },
 
     addToCArt(id) {
       this.ADD_TO_CART(id);
@@ -70,9 +85,9 @@ export default {
       this.$router.push({ name: "Cart" });
     },
   },
-  created() {
-    this.FETCH_PRODUCT(this.$route.params.id);
-  },
+  // mounted() {
+  //   this.FETCH_PRODUCT(this.$route.params.id);
+  // },
 };
 </script>
 
@@ -94,6 +109,9 @@ export default {
   }
   &__gallery {
     padding: 0 2rem;
+    @media (max-width: 767px) {
+      padding: 0;
+    }
   }
   &__title {
     font-size: 1.5rem;

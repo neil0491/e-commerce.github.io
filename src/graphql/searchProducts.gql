@@ -1,0 +1,6 @@
+query ($searchText: String!) {
+  products(where: { title_contains: $searchText }) {
+    id
+    title
+  }
+}

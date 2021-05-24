@@ -1,0 +1,21 @@
+query ($id: ID!, $sort: String) {
+  categories(where: { id: $id }) {
+    id
+    title
+    products(sort: $sort) {
+      id
+      title
+      price
+      brands {
+        id
+        title
+      }
+      image {
+        url
+      }
+      images {
+        url
+      }
+    }
+  }
+}

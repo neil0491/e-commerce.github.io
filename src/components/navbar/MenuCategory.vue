@@ -9,17 +9,15 @@
       </div>
       <ul>
         <li
-          v-for="cateegory in cateegories"
+          v-for="cateegory in categories"
           :key="cateegory.id"
           class="categories__item"
         >
-          <!-- {{ cateegory }} -->
-
-          <div class="d-flex">
-            <router-link :to="`product/${cateegory.id}`">
+          <router-link :to="{ name: 'Category', params: { id: cateegory.id } }">
+            <div class="d-flex">
               {{ cateegory.title }}
-            </router-link>
-          </div>
+            </div>
+          </router-link>
         </li>
       </ul>
     </div>
@@ -27,34 +25,21 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
+import categories from "../../graphql/categories.gql";
+
 export default {
   components: {},
-  props: ["cateegories"],
-  data: () => ({
-    products: null,
-  }),
-  computed: {
-    ...mapGetters(["GET_ALL_CATEGORIES", "GET_CATEGORY", "GET_MENU"]),
+  apollo: {
+    categories: {
+      query: categories,
+    },
   },
+  data: () => ({}),
+  computed: {},
   methods: {
-    ...mapActions(["FETCH_ALL_CATEGORIES", "CLOSE_MENU", "CLOSE_MENU"]),
-
-    // getCategoryContain: async () => {
-    //   const productInCategory = await axios(
-    //     `http://localhost:1337/categories?id_contains=1`
-    //   );
-    //   console.log(productInCategory.data);
-    //   this.products = productInCategory.data;
-    // },
+    ...mapActions(["CLOSE_MENU"]),
   },
-  // mounted() {
-  //   this.FETCH_ALL_CATEGORIES();
-  //   // this.getCategoryContain();
-  //   axios
-  //     .get(`http://localhost:1337/brands`)
-  //     .then((res) => (this.products = res.data));
-  // },
 };
 </script>
 

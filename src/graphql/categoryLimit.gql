@@ -1,0 +1,26 @@
+query Category {
+  categories(limit: 4) {
+    id
+    title
+    products(limit: 6) {
+      id
+      title
+      price
+      image {
+        url
+      }
+    }
+  }
+  brands {
+    id
+    title
+    products(limit: 6) {
+      id
+      title
+      price
+      image {
+        url
+      }
+    }
+  }
+}

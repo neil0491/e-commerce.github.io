@@ -105,6 +105,10 @@
   outline: none;
   cursor: pointer;
   transition: all 0.1s ease;
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 .ButtonNext_Size-L {
   padding: 8px 16px;
@@ -120,10 +124,18 @@
 .ButtonNext_Theme-Omega {
   background: $white;
   border: 1px solid $brand-orange;
-}
-.ButtonNext_Theme-Omega .ButtonNext__Text {
   color: $gray-75;
+  &:hover {
+    background-color: $brand-orange;
+    color: $white;
+  }
 }
+// .ButtonNext_Theme-Omega .ButtonNext__Text {
+//   &:hover {
+//     background-color: $brand-orange;
+//     color: $white;
+//   }
+// }
 .ButtonNext_Shadow-default:hover {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
@@ -144,7 +156,7 @@
   line-height: 24px;
   letter-spacing: 0.1em;
 }
-/*! CSS Used from: Embedded */
+
 .Typography__Subtitle {
   color: $gray-90;
   font-weight: 600;
@@ -162,7 +174,7 @@
 .Typography__Caption_Bold {
   font-weight: 600;
 }
-/*! CSS Used from: Embedded */
+
 .FieldNext {
   flex: 0 0 100%;
   width: 100%;
@@ -239,4 +251,46 @@
     background: transparent;
     color: $color-primary-base;
   }
+}
+
+.MyAccount-Action .HalykBank-Terms {
+  color: $color-myaccount-terms;
+  font-size: 12px;
+  line-height: 18px;
+  // top: 1px;
+  text-align: left;
+}
+.MyAccount-Action .HalykBank-Terms a {
+  font-size: 12px;
+  font-weight: 400;
+  // padding-top: 10px;
+  color: $color-primary-base;
+  font-size: 14px;
+}
+.MyAccount-Action .HalykBank-TermsParagraph {
+  margin: 0 0 1rem;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  color: #a2a2a2;
+}
+.CheckboxNext{
+  margin-top: 0.8rem;
+}
+
+.CheckboxNext__Label {
+  display: flex;
+}
+.CheckboxNext__Input {
+  min-width: 15px;
+  min-height: 15px;
+  margin-right: 1rem;
+  margin-top: 4px;
+}
+.invalid-feedback {
+  text-align: left;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #dc3545;
 }

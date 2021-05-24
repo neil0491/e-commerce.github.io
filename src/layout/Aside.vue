@@ -4,7 +4,7 @@
       <price class="py-2" />
     </accordion>
     <accordion title="Производитель">
-      <Brand :brandList="brandList" class="py-2" />
+      <Brand :brandList="brands" class="py-2" />
     </accordion>
   </div>
 </template>
@@ -13,17 +13,22 @@
 import accordion from "../components/accordion/accordion.vue";
 import Price from "../components/sort/price.vue";
 import Brand from "../components/sort/brand.vue";
+import allBrands from "@/graphql/allBrands.gql";
+
 export default {
   components: { accordion, Price, Brand },
   props: ["title"],
   data: () => ({
-    brandList: [
-      { id: 1, title: "Samsung" },
-      { id: 2, title: "LG" },
-    ],
+    brands: [],
   }),
+  apollo: {
+    brands: {
+      query: allBrands,
+      updated: (data) => data.allBrands,
+    },
+  },
+  computed: {},
 };
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

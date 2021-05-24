@@ -1,15 +1,35 @@
 <template>
   <ul>
     <li class="my-2" v-for="brand in brandList" :key="brand.id">
-      <input type="checkbox" name="Chekbox" />
+      <input
+        v-model="checked"
+        :value="brand.id"
+        type="checkbox"
+        name="Chekbox"
+      />
       <label>{{ brand.title }}</label>
     </li>
   </ul>
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   props: ["brandList"],
+  data() {
+    return {
+      checked: [],
+    };
+  },
+  watch: {
+    checked() {
+      console.log(this.checked);
+      this.SET_ID_BRANDS(this.checked);
+    },
+  },
+  methods: {
+    ...mapMutations(["SET_ID_BRANDS"]),
+  },
 };
 </script>
 

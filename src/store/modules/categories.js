@@ -1,6 +1,6 @@
 // import axios from "axios";
 import axios from "axios";
-import getFetch from "../../api/api";
+import getFetch from "@/api/api";
 
 // initial state
 const state = () => ({

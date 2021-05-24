@@ -16,7 +16,7 @@
                 <figure class="itemside">
                   <div class="aside">
                     <img
-                      :src="'http://localhost:1337' + cart.image.url"
+                      :src="getImages(cart.image.url)"
                       class="border img-sm"
                     />
                   </div>
@@ -52,7 +52,7 @@
                       @click="DECCREMENT_CART_ITEM(index)"
                       class="btn btn-primary js-change-qty"
                       type="button"
-                      :disabled="false"
+                      :disabled="CART_ITEMS[index].quantity <= 1"
                     >
                       <i class="fa fa-minus"></i>
                     </button>
@@ -119,6 +119,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import { getImg } from "@/utils/import";
 export default {
   computed: {
     ...mapGetters(["CART_TOTAL_PRICE", "CART_ITEMS"]),
@@ -136,7 +137,9 @@ export default {
       );
       return tottal;
     },
-    disableButton() {},
+    getImages(data) {
+      return getImg(data);
+    },
     getTotalCart(cartItems) {
       return cartItems.reduce((total, item) => total + item.quantity, 0);
     },
@@ -148,7 +151,16 @@ export default {
 <style scoped lang="scss">
 .cart-wrapper {
   margin: 1rem 0;
-  
+}
+.btn-block {
+  &:hover {
+    color: white;
+    opacity: 1;
+    -webkit-box-shadow: -5px 0px 57px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: -5px 0px 57px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: -5px 0px 57px 0px rgba(34, 60, 80, 0.2);
+    transform: scale(1.01);
+  }
 }
 .empty-cart {
   width: 100%;

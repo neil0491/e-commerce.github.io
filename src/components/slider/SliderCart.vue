@@ -3,7 +3,10 @@
     <hooper :wheelControl="false" group="group1" class="top-slide">
       <slide v-for="(slide, indx) in images" :key="indx" :index="indx">
         <div class="top-slide__inner">
-          <img class="hooper__img" :src="'http://localhost:1337' + slide.url" />
+          <img
+            class="hooper__img"
+            :src="'https://immense-sea-29580.herokuapp.com' + slide.url"
+          />
         </div>
       </slide>
     </hooper>
@@ -19,7 +22,10 @@
     >
       <slide v-for="(slide, indx) in images" :key="indx" :index="indx">
         <div class="bottom">
-          <img class="bottom__img" :src="'http://localhost:1337' + slide.url" />
+          <img
+            class="bottom__img"
+            :src="'https://immense-sea-29580.herokuapp.com' + slide.url"
+          />
         </div>
       </slide>
       <hooper-navigation slot="hooper-addons"></hooper-navigation>
@@ -48,7 +54,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.container-slide{
+.container-slide {
   margin-bottom: 1rem;
 }
 .hooper-list {
@@ -75,7 +81,7 @@ export default {
 .bottom {
   margin: 0.5rem;
   &__img {
-    object-fit: cover;
+    object-fit: contain;
     height: 100px;
   }
 }

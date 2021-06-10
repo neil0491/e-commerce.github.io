@@ -13,7 +13,8 @@ const AUTH_TOKEN = "apollo-token";
 
 // Http endpoint
 const httpEndpoint =
-  process.env.VUE_APP_GRAPHQL_HTTP || "http://localhost:1337/graphql";
+  process.env.VUE_APP_GRAPHQL_HTTP ||
+  "https://immense-sea-29580.herokuapp.com/graphql";
 // Files URL root
 export const filesRoot =
   process.env.VUE_APP_FILES_ROOT ||

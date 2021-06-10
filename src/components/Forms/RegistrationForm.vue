@@ -164,7 +164,6 @@ import {
   numeric,
 } from "vuelidate/lib/validators";
 
-
 export default {
   data: () => ({
     loading: false,
@@ -211,14 +210,15 @@ export default {
 
         this.loading = true;
         const response = await axios.post(
-          "http://localhost:1337/auth/local/register",
+          "https://immense-sea-29580.herokuapp.com/auth/local/register",
           {
             username: this.user.username,
             lastName: this.user.lastName,
             email: this.user.email,
             phone: this.user.phone,
             password: this.user.password,
-          }
+          },
+          { withCredentials: false }
         );
         this.loading = false;
         this.setUser(response.data.user);

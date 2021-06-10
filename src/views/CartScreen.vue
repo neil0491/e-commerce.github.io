@@ -86,7 +86,6 @@
             <dl class="dlist-align">
               <dt>Товары:</dt>
               <dd class="text-right js-total-original">
-                <!-- {{ getTotalPrice(CART_ITEMS) }} -->
                 {{ getTotalCart(CART_ITEMS) }}
               </dd>
             </dl>
@@ -96,7 +95,6 @@
                 {{ CART_TOTAL_PRICE }}
               </dd>
             </dl>
-
             <hr class="my-4" />
             <dl class="dlist-align mb-4">
               <dt>Всего к оплате:</dt>
@@ -104,15 +102,25 @@
                 <strong class="js-total-cost">{{ CART_TOTAL_PRICE }}</strong>
               </dd>
             </dl>
-            <a href="/" class="btn btn-primary btn-block mt-4">
+            <button
+              :disabled="CART_TOTAL_PRICE && !username"
+              class="btn btn-primary btn-block mt-4"
+              @click="openChkout"
+            >
               Оформить заказ
-            </a>
+            </button>
+            <div class="invalid-feedback mt-4" v-if="error">
+              Ошибка платежной системы
+            </div>
           </div>
           <!-- card-body.// -->
         </div>
         <!-- card.// -->
       </aside>
       <!-- col.// -->
+      <div v-if="this.isChekout && this.username" class="col-12 col-lg-9">
+        <checkout :invoiceID="invoiceID" :token="token"></checkout>
+      </div>
     </div>
   </div>
 </template>
@@ -120,9 +128,18 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import { getImg } from "@/utils/import";
+import checkout from "../components/checkout/checkout.vue";
+import axios from "axios";
 export default {
+  components: { checkout },
+  data: () => ({
+    isChekout: false,
+    token: {},
+    error: false,
+    invoiceID: "",
+  }),
   computed: {
-    ...mapGetters(["CART_TOTAL_PRICE", "CART_ITEMS"]),
+    ...mapGetters(["CART_TOTAL_PRICE", "CART_ITEMS", "username"]),
   },
   methods: {
     ...mapActions([
@@ -130,12 +147,32 @@ export default {
       "DECCREMENT_CART_ITEM",
       "INCREMENT_CART_ITEM",
     ]),
-    getTotalPrice(cartItems) {
-      const tottal = cartItems.reduce(
-        (total, item) => total + item.quantity * item.price,
-        0
-      );
-      return tottal;
+    async openChkout() {
+      this.invoiceID =
+        Date.now() + Math.floor(new Date().valueOf() * Math.random());
+      const body = new FormData();
+      body.append("grant_type", "client_credentials");
+      body.append("scope", "payment");
+      body.append("client_id", "test");
+      body.append("client_secret", "yF587AV9Ms94qN2QShFzVR3vFnWkhjbAK3sG");
+      body.append("invoiceID", this.invoiceID);
+      body.append("amount", this.CART_TOTAL_PRICE);
+      body.append("currency", "KZT");
+      body.append("terminal", "67e34d63-102f-4bd1-898e-370781d0074d");
+      body.append("postLink", "");
+      body.append("failurePostLink", "");
+      try {
+        const data = await axios({
+          method: "post",
+          url: "https://testoauth.homebank.kz/epay2/oauth2/token",
+          data: body,
+        });
+        this.token = data.data;
+        this.isChekout = !this.isChekout;
+      } catch (error) {
+        console.log(error);
+        this.error = true;
+      }
     },
     getImages(data) {
       return getImg(data);

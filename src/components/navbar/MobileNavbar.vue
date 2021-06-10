@@ -25,7 +25,7 @@
         </div>
       </li>
       <li class="nav__item">
-        <div v-if="!isUserAuth" @click="OPEN_MODAL" class="nav__icons">
+        <div v-if="!username" @click="OPEN_MODAL" class="nav__icons">
           <i class="fas fa-user"></i>
           <span>Войти</span>
         </div>
@@ -44,6 +44,7 @@ export default {
   data: () => ({}),
   methods: {
     ...mapActions(["CHANGE_STATE_CART", "OPEN_MENU", "OPEN_MODAL"]),
+    ...mapMutations(["logout"]),
     logoutUser() {
       this.logout();
     },
@@ -52,8 +53,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["CART_COUNT", "GET_MENU", "isUserAuth"]),
-    ...mapMutations(["logout"]),
+    ...mapGetters(["CART_COUNT", "GET_MENU", "username"]),
   },
 };
 </script>

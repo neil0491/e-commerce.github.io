@@ -9,7 +9,7 @@
         <router-link :to="{ name: 'Product', params: { id: card.id } }">
           <div class="card">
             <img
-              :src="'http://localhost:1337' + card.image.url"
+              :src="'https://immense-sea-29580.herokuapp.com' + card.image.url"
               :alt="card.id"
             />
             <div class="card__content pt-2">

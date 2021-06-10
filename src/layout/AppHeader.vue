@@ -15,8 +15,7 @@
         <div class="col-10 col-md-7 header-search__search">
           <search />
         </div>
-
-        <div v-if="!isUserAuth" class="col-2 header-search__login">
+        <div v-if="!username" class="col-2 header-search__login">
           <div @click="OPEN_MODAL">
             <Button outline button-text="Войти" />
           </div>
@@ -90,7 +89,6 @@ export default {
       "IS_MOBILE",
       "GET_MENU",
       "username",
-      "isUserAuth",
       "GET_TOTAL_CART",
     ]),
   },

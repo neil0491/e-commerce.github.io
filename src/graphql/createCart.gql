@@ -1,0 +1,32 @@
+mutation (
+  $username: String!
+  $lastName: String!
+  $adress: String!
+  $email: String!
+  $city: String!
+  $phone: String!
+  $price: String!
+) {
+  createCart(
+    input: {
+      data: {
+        username: $username
+        email: $email
+        lastName: $lastName
+        adress: $adress
+        city: $city
+        phone: $phone
+        price: $price
+      }
+    }
+  ) {
+    cart {
+      username
+      lastName
+      adress
+      email
+      city
+      phone
+    }
+  }
+}

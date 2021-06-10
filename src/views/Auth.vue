@@ -30,7 +30,6 @@ export default {
   computed: {
     // Set your username thanks to your getter
     ...mapGetters(["username"]),
-    
   },
   methods: {
     // Define your needed mutations, here: auth/logout

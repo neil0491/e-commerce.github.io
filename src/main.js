@@ -4,9 +4,10 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import { createProvider } from "./vue-apollo";
-// import axios from "axios";
+import axios from "axios";
+import Cookies from "js-cookie";
 
-// axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 
 import "bootstrap/scss/bootstrap-reboot.scss";
 import "bootstrap/scss/bootstrap-grid.scss";
@@ -16,6 +17,11 @@ Vue.config.productionTip = false;
 
 Vue.use(Vuelidate);
 
+const token = Cookies.get("user");
+if (token) {
+  axios.defaults.headers.common["Authorization"] = token;
+  store.commit("setUser", JSON.parse(token));
+}
 new Vue({
   router,
   store,

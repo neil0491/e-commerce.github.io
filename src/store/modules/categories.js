@@ -24,7 +24,7 @@ const getters = {
 const actions = {
   async FETCH_ALL_CATEGORIES({ commit }) {
     try {
-      const { data } = await axios("http://localhost:1337/categories");
+      const { data } = await axios("https://immense-sea-29580.herokuapp.com");
       commit("SET_CATEGORIES_TO_STATE", data);
     } catch (error) {
       commit("SET_CATEGORIES_ERROR", error);

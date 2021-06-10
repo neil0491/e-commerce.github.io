@@ -14,9 +14,11 @@ const mutations = {
     } else {
       state.cartItems.push({ ...product, quantity: 1 });
     }
+    localStorage.setItem("carts", JSON.stringify(state.cartItems));
   },
   REMOVE_FROM_CART(state, index) {
     state.cartItems.splice(index, 1);
+    localStorage.setItem("carts", JSON.stringify(state.cartItems));
   },
   DECCREMENT(state, index) {
     if (state.cartItems[index].quantity > 1) {
@@ -55,14 +57,16 @@ const getters = {
   CART_COUNT: ({ cartItems }) => cartItems.length,
   CART_ITEMS: ({ cartItems }) => cartItems,
   IS_CART_STATE: ({ isCartState }) => isCartState,
-  GET_TOTAL_CART: ({ cartItems }) => {
-    const tottal = cartItems.reduce((total, item) => total + item.quantity, 0);
-    return tottal;
-  },
+  // GET_TOTAL_CART: ({ cartItems }) => {
+  //   const tottal = cartItems.reduce((total, item) => total + item.quantity, 0);
+  //   return tottal;
+  // },
 };
 
 const state = () => ({
-  cartItems: [],
+  cartItems: localStorage.getItem("carts")
+    ? JSON.parse(localStorage.getItem("carts"))
+    : [],
   isCartState: false,
 });
 

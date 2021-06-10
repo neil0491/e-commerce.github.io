@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const getFetch = (data) => {
-  return axios(`http://localhost:1337/${data}`, {
+  return axios(`https://immense-sea-29580.herokuapp.com/${data}`, {
     method: "GET",
   });
 };

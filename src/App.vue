@@ -70,7 +70,7 @@ export default {
       "SET_MIN_PRICE",
       "SET_MAX_PRICE",
       "CLEAR_SUBMIT_PRICE",
-      "SET_ID_BRANDS"
+      "SET_ID_BRANDS",
     ]),
     closeSearchPaper() {
       this.SET_FOCUS_SEARCH(false);

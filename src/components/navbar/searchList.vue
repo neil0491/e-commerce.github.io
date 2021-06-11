@@ -1,7 +1,7 @@
 <template>
   <div v-if="GET_FOCUS_SEARCH" class="search-paper">
     <ul class="search-paper__list">
-      <li v-if="$apollo.loading">Loading...</li>
+      <div v-if="$apollo.loading"><loading-menu /></div>
       <li
         v-else
         v-for="product in products"
@@ -20,8 +20,10 @@
 <script>
 import { mapGetters, mapMutations } from "vuex";
 import serchProducts from "@/graphql/searchProducts.gql";
+import loadingMenu from "../loading/loadingMenu.vue";
 
 export default {
+  components: { loadingMenu },
   data() {
     return {
       products: [],

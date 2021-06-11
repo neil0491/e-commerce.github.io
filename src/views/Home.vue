@@ -2,7 +2,7 @@
   <div>
     <Slider class="mt-2" />
     <div class="tab-content">
-      <div v-if="$apollo.loading">Loading...</div>
+      <div v-if="$apollo.loading"><loading-query /></div>
       <tabs v-else mode="light">
         <tab :title="categories[0].title">
           <card :cards="categories[0].products" />
@@ -42,10 +42,11 @@ import Tab from "../components/Tab/Tab.vue";
 import Tabs from "../components/Tab/Tabs.vue";
 import Slider from "../components/slider/Slider";
 import categoryLimit from "@/graphql/categoryLimit.gql";
+import LoadingQuery from "../components/loading/loadingQuery.vue";
 
 export default {
   name: "Home",
-  components: { Tab, Tabs, Slider, Card },
+  components: { Tab, Tabs, Slider, Card, LoadingQuery },
   data: () => ({
     tab: {},
     categories: [],

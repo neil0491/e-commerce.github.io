@@ -11,6 +11,7 @@
       </aside>
     </div>
     <div class="col-12 col-md-9">
+      <div v-if="$apollo.loading"><loading-query /></div>
       <div class="row">
         <div class="col"><card :cards="products" /></div>
       </div>
@@ -24,8 +25,9 @@ import allProducts from "@/graphql/allProducts.gql";
 import accordion from "@/components/accordion/accordion.vue";
 import Brand from "@/components/sort/brand.vue";
 import Price from "../components/sort/price.vue";
+import LoadingQuery from "../components/loading/loadingQuery.vue";
 export default {
-  components: { Card, accordion, Brand, Price },
+  components: { Card, accordion, Brand, Price, LoadingQuery },
   data: () => ({
     select: "default",
     products: null,

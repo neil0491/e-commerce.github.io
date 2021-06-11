@@ -37,14 +37,14 @@ const routes = [
     name: "Cart",
     component: () => import("../views/CartScreen.vue"),
   },
-  {
-    path: "/auth",
-    name: "Auth",
-    component: () => import("../views/Auth.vue"),
-    meta: {
-      requiresAuth: true,
-    },
-  },
+  // {
+  //   path: "/auth",
+  //   name: "Auth",
+  //   component: () => import("../views/Auth.vue"),
+  //   meta: {
+  //     requiresAuth: true,
+  //   },
+  // },
   {
     path: "*",
     component: () => import("../views/404page"),
